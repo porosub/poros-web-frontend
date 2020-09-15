@@ -1,0 +1,12 @@
+import React from 'react'
+
+const PageName = (props) => {
+    return (
+        <div>
+            <h1 className="text-4xl font-bold text-primary">{props.pageName}</h1>
+            {props.inclUser ? <p className="text-gray-700">{`Welcome back, ${props.username}`}!</p> : null}
+        </div>
+    )
+}
+
+export default PageName;

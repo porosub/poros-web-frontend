@@ -1,0 +1,25 @@
+.Content {
+    min-height: calc(100vh - 52.45px);
+    // background-color: aqua;
+    margin-top: 57.9667px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (min-width: 640px) {
+}
+
+@media only screen and (min-width: 768px) {
+    .Content {
+        margin-top: 91.9333px;
+        min-height: calc(100vh - 60.45px);
+    }
+}
+@media only screen and (min-width: 1024px) {
+    .Content {
+        margin-top: 57.9667px;
+        min-height: calc(100vh - 60.45px);
+    }
+}
+@media only screen and (min-width: 1280px) {
+}

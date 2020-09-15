@@ -1,0 +1,136 @@
+/* this css used only for animation purpose */
+
+.dropdown-btn-enter {
+    transform: rotate(0deg);
+}
+.dropdown-btn-enter-active {
+    transform: rotate(180deg);
+    transition: all 0.3s ease-in-out;
+}
+.dropdown-btn-enter-done {
+    transform: rotate(180deg);
+}
+.dropdown-btn-exit {
+    transform: rotate(180deg);
+}
+.dropdown-btn-exit-active {
+    transform: rotate(0deg);
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+.dropdown-enter {
+    min-width: 0rem;
+    width: 0;
+    padding: 0;
+    border-color: white;
+    max-height: 0;
+    height: 0;
+}
+.dropdown-enter-active {
+    min-width: 14rem;
+    width: 14rem;
+    height: auto;
+    max-height: none;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-color: black;
+    transition: all 0.3s ease-in-out;
+}
+.dropdown-enter-done {
+    width: 14rem;
+    max-height: none;
+    height: auto;
+    min-width: 14rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1.25rem;
+    border-color: black;
+    padding-bottom: 1.25rem;
+}
+.dropdown-exit {
+    max-height: none;
+    height: auto;
+    border-color: black;
+    width: 14rem;
+    min-width: 14rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+}
+.dropdown-exit-active {
+    height: 0;
+    max-height: 0;
+    width: 0;
+    min-width: 0rem;
+    padding: 0;
+    border-color: white;
+    transition: all 0.3s ease-in-out;
+}
+.dropdown-exit-done {
+    width: 0;
+    height: 0;
+    min-width: 0rem;
+    padding: 0;
+    max-height: 0;
+    border-color: white;
+}
+
+
+
+.dropdown-menu-enter {
+    transform: translateX(6rem);
+    opacity: 0;
+}
+.dropdown-menu-enter-active {
+    transform: translateX(0);
+    opacity: 1;
+    transition: all 0.3s ease-in-out .3s;
+}
+.dropdown-menu-enter-done {
+    transform: translateX(0);
+    opacity: 1;
+}
+.dropdown-menu-exit {
+    transform: translateX(0);
+    opacity: 1;
+}
+.dropdown-menu-exit-active {
+    transform: translateX(6rem);
+    opacity: 0;
+    transition: all 0.3s ease-in-out .3s;
+}
+.dropdown-menu-exit-done {
+    transform: translateX(6rem);
+    opacity: 0;
+}
+
+@media only screen and (min-width: 640px) {
+}
+@media only screen and (min-width: 768px) {
+}
+@media only screen and (min-width: 1024px) {
+}
+@media only screen and (min-width: 1280px) {
+    .off-canvas-enter {
+        margin-left: 3rem;
+    }
+    .off-canvas-enter-active {
+        margin-left: 14rem;
+        transition: all 0.5s ease-in-out;
+    }
+    .off-canvas-enter-done {
+        margin-left: 14rem;
+    }
+    .off-canvas-exit {
+        margin-left: 14rem;
+    }
+    .off-canvas-exit-active {
+        margin-left: 3rem;
+        transition: all 0.5s ease-in-out;
+    }
+}

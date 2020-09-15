@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+/* purgecss start ignore */
+@tailwind base;
+@tailwind components;
+/* purgecss end ignore */
+@tailwind utilities;
+
+
+/* OVERIDE STYLE */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.hamburger {
+    padding: 0 !important;
+}
+
+.no-outline{
+    outline: none;
+}
+
+.hamburger.is-active .hamburger-inner, .hamburger.is-active .hamburger-inner::after, .hamburger.is-active .hamburger-inner::before {
+    background-color: #fff !important;
+}
+
+@media only screen and (min-width: 640px) {
+
+}
+@media only screen and (min-width: 768px) {
+    .hamburger {
+        padding: 15px !important;
+        margin-top: 10px !important;
+    }
+
+    .hamburger-inner, .hamburger-inner::after, .hamburger-inner::before {
+        width: 60px !important;
+        height: 7px !important;
+    }
+
+    .hamburger-box {
+        width: 60px !important;
+        height: 30px !important;
+    }
+
+    .hamburger--collapse .hamburger-inner::after {
+        top: -25px !important;
+    }
+    .hamburger--collapse .hamburger-inner::before {
+        top: -12px !important;
+    }
+    .hamburger--collapse.is-active .hamburger-inner::before {
+        top: 0 !important;
+    }
+}
+@media only screen and (min-width: 1024px) {
+    .hamburger {
+        display: none !important;
+    }
+}
+@media only screen and (min-width: 1280px) {
+
+}
