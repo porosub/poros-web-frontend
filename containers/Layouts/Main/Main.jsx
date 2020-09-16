@@ -478,7 +478,7 @@ const Main = (props) => {
                         </div>
                         <CSSTransition in={isEntering} timeout={500} classNames="off-canvas">
                             {/* <div className="lg:ml-24 bg-blue-400 w-full flex flex-col xl:ml-12"> */}
-                            <div className="lg:ml-24 bg-transparent w-full flex flex-col xl:ml-12 px-5 pt-5">
+                            <div className="lg:ml-24 bg-transparent w-full flex flex-col xl:ml-12 px-5 pt-5 md:px-10 md:pt-10 lg:px-12 xl:px-16">
                                 {props.children}
                             </div>
                         </CSSTransition>
