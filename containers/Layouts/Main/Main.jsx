@@ -142,7 +142,7 @@ const Main = (props) => {
     return (
         <div>
             <Head>
-                <title>{props.title}</title>
+                <title>POROS Admin | {props.title}</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className="flex flex-col font-poros">

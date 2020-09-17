@@ -39,7 +39,7 @@ const chartData = {
 
 
 const Home = () => (
-  <Main title="POROS Admin | Dashboard">
+  <Main title="Dashboard">
     <div className="mb-12">
       <PageName pageName="Dashboard" inclUser username="James" />
     </div>
@@ -56,14 +56,14 @@ const Home = () => (
       </div>
     </div>
 
-    <div className="xl:inline-grid xl:grid-rows-1 xl:grid-cols-2">
+    <div className="xl:inline-grid xl:grid-rows-1 xl:grid-cols-2 justify-center">
       <div className="mb-12 xl:mr-16">
         <FeatureBox featureTitle="Latest Post">
           <LatestPost img={latestPostData.img} title={latestPostData.title} desc={latestPostData.desc} />
         </FeatureBox>
       </div>
 
-      <div className="mb-12">
+      <div className="mb-12 xl:ml-16 self-center">
         <FeatureBox featureTitle="Most Active Users">
           <Chart data={chartData} />
         </FeatureBox>
