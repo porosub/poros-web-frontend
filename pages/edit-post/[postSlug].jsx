@@ -1,8 +1,8 @@
 import React from 'react'
 import SunEditor, { buttonList } from 'suneditor-react'
-import Main from '../containers/Layouts/Main/Main'
-import PageName from '../components/PageName/PageName'
-import Button from '../components/Button/Button'
+import Main from '../../containers/Layouts/Main/Main'
+import PageName from '../../components/PageName/PageName'
+import Button from '../../components/Button/Button'
 
 const CreatePost = () => {
 
@@ -13,7 +13,7 @@ const CreatePost = () => {
     return (
         <Main title="Dashboard">
             <div className="mb-6 xl:mb-16">
-                <PageName pageName="Create Post" />
+                <PageName pageName="Edit Post" />
             </div>
             <div className="flex justify-center">
                 <div className="flex justify-center mb-12 xl:w-4/6">
@@ -27,10 +27,10 @@ const CreatePost = () => {
                             <div className="flex justify-center mr-2 md:mr-0">
                                 <SunEditor lang="id" placeholder="Isi Post ..." setOptions={{
                                     buttonList: buttonList.complex
-                                }} 
-                                width="100%"
-                                height="27rem"
-                                setDefaultStyle="font-family: 'Montserrat';" />
+                                }}
+                                    width="100%"
+                                    height="27rem"
+                                    setDefaultStyle="font-family: 'Montserrat';" />
                             </div>
                         </div>
                         <div className="flex justify-end outline-none md:pr-4">
