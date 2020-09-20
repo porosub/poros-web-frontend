@@ -1,9 +1,9 @@
 import React from 'react'
-import Main from '../containers/Layouts/Main/Main'
-import PageName from '../components/PageName/PageName'
-import Button from '../components/Button/Button'
-import Separator from '../components/Separator/Separator'
-import PostCard from '../components/PostCard/PostCard'
+import Main from '../../containers/Layouts/Main/Main'
+import PageName from '../../components/PageName/PageName'
+import Button from '../../components/Button/Button'
+import Separator from '../../components/Separator/Separator'
+import PostCard from '../../components/PostCard/PostCard'
 
 const dummy = [
     {

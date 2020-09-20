@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = (props) => {
     return (
-        <footer className="bg-black flex w-full py-3 px-5 justify-between items-center md:py-4 md:px-6 lg:z-10">
+        <footer className="bg-black flex w-full py-3 px-5 justify-between items-center md:py-4 md:px-6 lg:z-10 z-1">
             <p className="text-white font-semibold inline-block">&copy; POROS 2020</p>
             <div className="flex items-center">
                 <div className="w-6 mr-4 cursor-pointer">

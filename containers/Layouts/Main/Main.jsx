@@ -156,7 +156,7 @@ const Main = (props) => {
                                         ...defaultStyle,
                                         ...transitionStyles[state]
                                     }}
-                                    className="lg:flex w-0 h-full fixed bg-primary hidden lg:hidden lg:w-24 xl:block lg:flex-col pb-32 pt-8 xl:w-12 overflow-x-hidden" onMouseEnter={() => setIsEntering(true)} onMouseLeave={() => setIsEntering(false)}>
+                                    className="lg:flex w-0 h-full fixed bg-primary hidden lg:hidden lg:w-24 xl:block lg:flex-col pb-32 pt-8 xl:w-12 overflow-x-hidden lg:z-10 test" onMouseEnter={() => setIsEntering(true)} onMouseLeave={() => setIsEntering(false)}>
 
                                     <Transition in={isEntering} timeout={500}>
                                         {state => (
@@ -443,7 +443,7 @@ const Main = (props) => {
                             )}
                         </Transition>
 
-                        <div className="lg:flex w-0 h-full fixed bg-primary hidden lg:w-24 lg:block xl:hidden lg:flex-col pb-32 pt-8 xl:w-12 xl:w-48" onMouseEnter={() => setIsEntering(true)} onMouseLeave={() => setIsEntering(false)}>
+                        <div className="lg:flex w-0 h-full fixed bg-primary hidden lg:w-24 lg:block xl:hidden lg:flex-col pb-32 pt-8 xl:w-12 xl:w-48 z-10" onMouseEnter={() => setIsEntering(true)} onMouseLeave={() => setIsEntering(false)}>
                             <div>
                                 <div className="flex flex-col items-center mb-8 xl:mb-10">
                                     <div className="rounded-full overflow-x-hidden w-12 h-12 border-2 border-yellow-500 bg-white xl:w-8 xl:h-8">
