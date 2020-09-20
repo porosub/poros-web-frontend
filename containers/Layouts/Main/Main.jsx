@@ -23,8 +23,8 @@ const dFirstContainer = {
 }
 
 const tFirstContainer = {
-    entering: { padding: '0rem 1.25rem' },
-    entered: { padding: '0rem 1.25rem' },
+    entering: { padding: '0rem 0rem' },
+    entered: { padding: '0rem 0rem' },
     exiting: { padding: '0rem 0rem' },
     exited: { padding: '0rem 0rem' },
 };
@@ -32,13 +32,14 @@ const tFirstContainer = {
 const dSecContainer = {
     transition: 'all .2s ease-in-out',
     flexDirection: 'column',
+    marginLeft: 0,
 }
 
 const tSecContainer = {
-    entering: { flexDirection: 'row' },
-    entered: { flexDirection: 'row' },
-    exiting: { flexDirection: 'column' },
-    exited: { flexDirection: 'column' },
+    entering: {marginLeft: '1rem', flexDirection: 'row' },
+    entered: {marginLeft: '1rem', flexDirection: 'row' },
+    exiting: {marginLeft: 0, flexDirection: 'column' },
+    exited: {marginLeft: 0, flexDirection: 'column' },
 };
 
 const dImgContainer = {
@@ -100,11 +101,11 @@ const dIconContainer = {
 const tIconContainer = {
     entering: {
         flexDirection: 'row',
-        padding: '.5rem .75rem'
+        padding: '.5rem 1.75rem'
     },
     entered: {
         flexDirection: 'row',
-        padding: '.5rem .75rem'
+        padding: '.5rem 1.75rem'
     },
     exiting: {
         flexDirection: 'column',
@@ -172,7 +173,7 @@ const Main = (props) => {
                                                                 ...dSecContainer,
                                                                 ...tSecContainer[state]
                                                             }}
-                                                            className="flex flex-col items-center mb-8 xl:mb-10 transition duration-200 hover:bg-green-700 rounded-full cursor-pointer">
+                                                            className="flex flex-col items-center mb-8 xl:mb-10 ml-4">
                                                             <Transition in={isEntering} timeout={500}>
                                                                 {state => (
                                                                     <div
@@ -196,7 +197,7 @@ const Main = (props) => {
                                                                     >
                                                                         <p
 
-                                                                            className="ml-4 font-semibold text-white transition duration-500 hover:text-yellow-500">Jane Smith
+                                                                            className="ml-3 font-semibold text-white">Jane Smith
                                                                     </p>
                                                                     </div>
                                                                 )}
@@ -235,7 +236,7 @@ const Main = (props) => {
                                                                     >
                                                                         <p
 
-                                                                            className="ml-4 font-semibold text-white transition duration-500 hover:text-yellow-500">Dashboard
+                                                                            className="ml-3 font-semibold text-white">Dashboard
                                                                     </p>
                                                                     </div>
                                                                 )}
@@ -274,7 +275,7 @@ const Main = (props) => {
                                                                     >
                                                                         <p
 
-                                                                            className="ml-4 font-semibold text-white transition duration-500 hover:text-yellow-500">Posts
+                                                                            className="ml-3 font-semibold text-white">Posts
                                                                     </p>
                                                                     </div>
                                                                 )}
@@ -313,7 +314,7 @@ const Main = (props) => {
                                                                     >
                                                                         <p
 
-                                                                            className="ml-4 font-semibold text-white transition duration-500 hover:text-yellow-500">Projects
+                                                                            className="ml-3 font-semibold text-white">Projects
                                                                     </p>
                                                                     </div>
                                                                 )}
@@ -352,7 +353,7 @@ const Main = (props) => {
                                                                     >
                                                                         <p
 
-                                                                            className="ml-4 font-semibold text-white transition duration-500 hover:text-yellow-500">Achievements
+                                                                            className="ml-3 font-semibold text-white">Achievements
                                                                     </p>
                                                                     </div>
                                                                 )}
@@ -389,7 +390,7 @@ const Main = (props) => {
                                                                     >
                                                                         <p
 
-                                                                            className="ml-4 font-semibold text-white transition duration-500 group-hover:text-yellow-500">Users
+                                                                            className="ml-3 font-semibold text-white">Users
                                                                     </p>
                                                                     </div>
                                                                 )}
@@ -428,7 +429,7 @@ const Main = (props) => {
                                                                     >
                                                                         <p
 
-                                                                            className="ml-4 font-semibold text-white transition duration-500 hover:text-yellow-500">Web Setting
+                                                                            className="ml-3 font-semibold text-white">Web Setting
                                                                     </p>
                                                                     </div>
                                                                 )}

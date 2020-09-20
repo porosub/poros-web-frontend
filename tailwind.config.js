@@ -40,6 +40,9 @@ module.exports = {
         '4': '4rem',
         '5': '5rem',
       },
+      minHeight: {
+        '298p': '298px',
+      },
       minWidth: {
         '0': '0',
         '1': '1rem',
@@ -61,6 +64,7 @@ module.exports = {
       },
       height: {
         '2px': '2px',
+        '373p': '373px',
       },
       width: {
         '9/10': '90%',

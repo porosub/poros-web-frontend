@@ -63,6 +63,10 @@ const Home = () => (
         </FeatureBox>
       </div>
 
+      {/* <div className="bg-red-400 min-h-298p w-48">
+
+      </div> */}
+
       <div className="mb-12 xl:ml-16 self-center">
         <FeatureBox featureTitle="Most Active Users">
           <Chart data={chartData} />
