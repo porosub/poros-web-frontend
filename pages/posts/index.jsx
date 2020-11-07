@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
+import Router from 'next/router'
+
 import Main from '../../containers/Layouts/Main/Main'
 import PageName from '../../components/PageName/PageName'
 import Button from '../../components/Button/Button'
 import Separator from '../../components/Separator/Separator'
 import PostCard from '../../components/PostCard/PostCard'
+import DeleteConfirmModal from '../../components/ModalContent/DeleteConfirmModal/DeleteConfirmModal'
 
 const dummy = [
     {
@@ -33,26 +36,32 @@ const dummy = [
 ]
 
 const Posts = () => {
+    const [modalState, setModalState] = useState(false)
+    const [deleteTitle, setDeleteTitle] = useState('')
+    
+    const handleDeletePost = postTitle => {
+        setDeleteTitle(postTitle)
+        setModalState(true)
+    }
+
     return (
         <Main title="Dashboard">
             <div className="mb-6">
                 <PageName pageName="Posts" />
             </div>
             <div className="flex w-full justify-end mb-5">
-                <Button text="Create New Post" />
+                <Button text="Create New Post" clicked={() => Router.push('/create-post')} />
             </div>
             <div className="mb-5">
                 <Separator text="overview" />
             </div>
             {/* <div className="mb-10 xl:inline-grid xl:grid-rows-1 xl:grid-cols-2"> */}
             <div className="mb-10 xl:flex xl:flex-wrap xl:justify-between xl:px-32">
-                {/* <PostCard userImg="/icons/person.svg" username="King Kringe" created="2020-09-15 20:59:32" title="How to appreciate people (for dummies)" tag="selfdevelopment" />
-                <PostCard userImg="/icons/person.svg" username="King Kringe" created="2020-09-15 20:59:32" title="aku adalah anak gemabala selalu riang serta gembira" tag="selfdevelopment" />
-                <PostCard userImg="/icons/person.svg" username="King Kringe" created="2020-09-15 20:59:32" title="How to appreciate people (for dummies)" tag="selfdevelopment" /> */}
                 {dummy.map(post => {
-                   return <PostCard key={post.id} userImg={post.userImg} username={post.username} created={post.created} title={post.title} tag={post.tag} /> 
+                   return <PostCard key={post.id} postData={post} ondelete={() => handleDeletePost(post.title)} /> 
                 })}
             </div>
+            <DeleteConfirmModal todelete={deleteTitle} trigger={modalState} setTrigger={setModalState}/>
         </Main>
     )
 }

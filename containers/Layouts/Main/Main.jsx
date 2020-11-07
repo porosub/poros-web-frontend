@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Link from 'next/link'
 import Navbar from "../../../components/Navbar/Navbar"
 import Footer from "../../../components/Footer/Footer"
 import { Transition, CSSTransition } from 'react-transition-group'
@@ -36,10 +37,10 @@ const dSecContainer = {
 }
 
 const tSecContainer = {
-    entering: {marginLeft: '1rem', flexDirection: 'row' },
-    entered: {marginLeft: '1rem', flexDirection: 'row' },
-    exiting: {marginLeft: 0, flexDirection: 'column' },
-    exited: {marginLeft: 0, flexDirection: 'column' },
+    entering: { marginLeft: '1rem', flexDirection: 'row' },
+    entered: { marginLeft: '1rem', flexDirection: 'row' },
+    exiting: { marginLeft: 0, flexDirection: 'column' },
+    exited: { marginLeft: 0, flexDirection: 'column' },
 };
 
 const dImgContainer = {
@@ -207,80 +208,85 @@ const Main = (props) => {
                                                 </Transition>
                                                 <Transition in={isEntering} timeout={500}>
                                                     {state => (
-                                                        <div
-                                                            style={{
-                                                                ...dIconContainer,
-                                                                ...tIconContainer[state]
-                                                            }}
-                                                            className="flex items-center mb-8 xl:mb-6 transition duration-200 hover:bg-green-700 rounded-r-full px-3 py-2 cursor-pointer">
-                                                            <Transition in={isEntering} timeout={500}>
-                                                                {state => (
-                                                                    <img
-                                                                        style={{
-                                                                            ...dIcon,
-                                                                            ...tIcon[state]
-                                                                        }}
-                                                                        src="/icons/dashboard.svg" alt="" className="w-2/6 xl:w-1/2 xl:w-1/6" />
-                                                                )}
-                                                            </Transition>
-                                                            {/* <p className="text-white font-bold text-md ml-4">Dashboard</p>
+                                                        <Link href="/">
+                                                            <div
+                                                                style={{
+                                                                    ...dIconContainer,
+                                                                    ...tIconContainer[state]
+                                                                }}
+                                                                className="flex items-center mb-8 xl:mb-6 transition duration-200 hover:bg-green-700 rounded-r-full px-3 py-2 cursor-pointer">
+                                                                <Transition in={isEntering} timeout={500}>
+                                                                    {state => (
+                                                                        <img
+                                                                            style={{
+                                                                                ...dIcon,
+                                                                                ...tIcon[state]
+                                                                            }}
+                                                                            src="/icons/dashboard.svg" alt="" className="w-2/6 xl:w-1/2 xl:w-1/6" />
+                                                                    )}
+                                                                </Transition>
+                                                                {/* <p className="text-white font-bold text-md ml-4">Dashboard</p>
                                                              */}
-                                                            <Transition in={isEntering} timeout={500}>
-                                                                {state => (
-                                                                    <div
-                                                                        style={{
-                                                                            ...dText,
-                                                                            ...tText[state]
-                                                                        }}
-                                                                        className="h-auto overflow-hidden"
-                                                                    >
-                                                                        <p
+                                                                <Transition in={isEntering} timeout={500}>
+                                                                    {state => (
+                                                                        <div
+                                                                            style={{
+                                                                                ...dText,
+                                                                                ...tText[state]
+                                                                            }}
+                                                                            className="h-auto overflow-hidden"
+                                                                        >
+                                                                            <p
 
-                                                                            className="ml-3 font-semibold text-white">Dashboard
+                                                                                className="ml-3 font-semibold text-white">Dashboard
                                                                     </p>
-                                                                    </div>
-                                                                )}
-                                                            </Transition>
-                                                        </div>
+                                                                        </div>
+                                                                    )}
+                                                                </Transition>
+                                                            </div>
+                                                        </Link>
                                                     )}
                                                 </Transition>
                                                 <Transition in={isEntering} timeout={500}>
                                                     {state => (
-                                                        <div
-                                                            style={{
-                                                                ...dIconContainer,
-                                                                ...tIconContainer[state]
-                                                            }}
-                                                            className="flex items-center mb-8 xl:mb-6 transition duration-200 hover:bg-green-700 rounded-r-full px-3 py-2 cursor-pointer">
-                                                            <Transition in={isEntering} timeout={500}>
-                                                                {state => (
-                                                                    <img
-                                                                        style={{
-                                                                            ...dIcon,
-                                                                            ...tIcon[state]
-                                                                        }}
-                                                                        src="/icons/posts.svg" alt="" className="w-2/6 xl:w-1/2 xl:w-1/6" />
-                                                                )}
-                                                            </Transition>
-                                                            {/* <p className="text-white font-bold text-md ml-4">Dashboard</p>
-                                                             */}
-                                                            <Transition in={isEntering} timeout={500}>
-                                                                {state => (
-                                                                    <div
-                                                                        style={{
-                                                                            ...dText,
-                                                                            ...tText[state]
-                                                                        }}
-                                                                        className="h-auto overflow-hidden"
-                                                                    >
-                                                                        <p
+                                                        <Link href="/posts">
 
-                                                                            className="ml-3 font-semibold text-white">Posts
+                                                            <div
+                                                                style={{
+                                                                    ...dIconContainer,
+                                                                    ...tIconContainer[state]
+                                                                }}
+                                                                className="flex items-center mb-8 xl:mb-6 transition duration-200 hover:bg-green-700 rounded-r-full px-3 py-2 cursor-pointer">
+                                                                <Transition in={isEntering} timeout={500}>
+                                                                    {state => (
+                                                                        <img
+                                                                            style={{
+                                                                                ...dIcon,
+                                                                                ...tIcon[state]
+                                                                            }}
+                                                                            src="/icons/posts.svg" alt="" className="w-2/6 xl:w-1/2 xl:w-1/6" />
+                                                                    )}
+                                                                </Transition>
+                                                                {/* <p className="text-white font-bold text-md ml-4">Dashboard</p>
+                                                             */}
+                                                                <Transition in={isEntering} timeout={500}>
+                                                                    {state => (
+                                                                        <div
+                                                                            style={{
+                                                                                ...dText,
+                                                                                ...tText[state]
+                                                                            }}
+                                                                            className="h-auto overflow-hidden"
+                                                                        >
+                                                                            <p
+
+                                                                                className="ml-3 font-semibold text-white">Posts
                                                                     </p>
-                                                                    </div>
-                                                                )}
-                                                            </Transition>
-                                                        </div>
+                                                                        </div>
+                                                                    )}
+                                                                </Transition>
+                                                            </div>
+                                                        </Link>
                                                     )}
                                                 </Transition>
                                                 <Transition in={isEntering} timeout={500}>

@@ -8,12 +8,16 @@ const Footer = (props) => {
                 <div className="w-6 mr-4 cursor-pointer">
                     <img src="https://static.ivqonsanada.com/poros/img/line-brands.svg" alt="" className="w-full"/>
                 </div>
-                <div className="w-6 mr-4 cursor-pointer">
-                    <img src="https://static.ivqonsanada.com/poros/img/instagram-brands.svg" alt="" className="w-full"/>
-                </div>
-                <div className="w-8 cursor-pointer">
-                    <img src="https://static.ivqonsanada.com/poros/img/youtube-brands.svg" alt="" className="w-full"/>
-                </div>
+                <a href="https://www.instagram.com/porosfilkom/">
+                    <div className="w-6 mr-4 cursor-pointer">
+                        <img src="https://static.ivqonsanada.com/poros/img/instagram-brands.svg" alt="" className="w-full"/>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/channel/UC3Mh33VM0dwLlXiH_00qOJw">
+                    <div className="w-8 cursor-pointer">
+                        <img src="https://static.ivqonsanada.com/poros/img/youtube-brands.svg" alt="" className="w-full"/>
+                    </div>
+                </a>
             </div>
         </footer>
     )

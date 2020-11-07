@@ -7,6 +7,7 @@ import LatestPost from '../components/LatestPost/LatestPost';
 import Chart from '../components/Chart/Chart';
 
 const latestPostData = {
+  id: '123123',
   title: "How to use React Hooks",
   img: "/img/reactjs.png",
   desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis natus iusto ut tempora repellat assumenda temporibus tenetur quisquam, harum unde hic, doloremque ipsa suscipit, accusantium ipsam beatae eligendi quos adipisci! Delectus architecto quae sit dolorum laborum tempora porro maiores quibusdam reprehenderit qui rem eius distinctio sint recusandae culpa, nemo facere"
