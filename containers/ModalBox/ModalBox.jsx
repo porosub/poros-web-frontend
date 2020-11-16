@@ -10,7 +10,6 @@ const ModalBox = (props) => {
                 return
             }
 
-            // console.log('test')
             props.triggerSetter(false)
         }
     }
@@ -29,11 +28,6 @@ const ModalBox = (props) => {
                 <div
                     ref={outside}
                     className="w-9/10 md:w-8/12 lg:w-7/12 xl:w-5/12 px-5 py-3 md:px-8 md:py-5 bg-white absolute top-45/100 left-1/2 transform -translate-y-1/2 -translate-x-1/2 rounded-lg">
-                    {/* <p className="text-sm text-justify mb-5 md:mb-10 md:text-base">Apa Anda yakin ingin menghapus "{deleteTitle}".</p>
-                    <div className="w-full flex justify-between">
-                        <button className="rounded-lg bg-green-500 px-5 py-1 md:py-3 w-2/6 font-semibold text-white">Ya</button>
-                        <button className="rounded-lg bg-red-500 px-5 py-1 md:py-3 w-2/6 font-semibold text-white" onClick={() => setModalState(false)}>Tidak</button>
-                    </div> */}
                     {props.children}
                 </div>
             </div>

@@ -1,5 +1,31 @@
 /* this css used only for animation purpose */
 
+@media only screen and (min-width: 640px) {
+}
+@media only screen and (min-width: 768px) {
+}
+@media only screen and (min-width: 1024px) {
+}
+@media only screen and (min-width: 1280px) {
+    .off-canvas-enter {
+        margin-left: 3rem;
+    }
+    .off-canvas-enter-active {
+        margin-left: 14rem;
+        transition: all 0.5s ease-in-out;
+    }
+    .off-canvas-enter-done {
+        margin-left: 14rem;
+    }
+    .off-canvas-exit {
+        margin-left: 14rem;
+    }
+    .off-canvas-exit-active {
+        margin-left: 3rem;
+        transition: all 0.5s ease-in-out;
+    }
+}
+
 .dropdown-btn-enter {
     transform: rotate(0deg);
 }
@@ -175,28 +201,36 @@
     opacity: 0;
 }
 
-@media only screen and (min-width: 640px) {
+
+
+.login-fail-card-enter {
+    opacity: 0;
+    transform: scale(0);
 }
-@media only screen and (min-width: 768px) {
+
+.login-fail-card-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: all .5s ease-in-out .5s;
 }
-@media only screen and (min-width: 1024px) {
+
+.login-fail-card-enter-done {
+    opacity: 1;
+    transform: scale(1);
 }
-@media only screen and (min-width: 1280px) {
-    .off-canvas-enter {
-        margin-left: 3rem;
-    }
-    .off-canvas-enter-active {
-        margin-left: 14rem;
-        transition: all 0.5s ease-in-out;
-    }
-    .off-canvas-enter-done {
-        margin-left: 14rem;
-    }
-    .off-canvas-exit {
-        margin-left: 14rem;
-    }
-    .off-canvas-exit-active {
-        margin-left: 3rem;
-        transition: all 0.5s ease-in-out;
-    }
+
+.login-fail-card-exit {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.login-fail-card-exit-active {
+    opacity: 0;
+    transform: scale(0);
+    transition: all .5s ease-in-out .5s;
+}
+
+.login-fail-card-exit-done {
+    opacity: 0;
+    transform: scale(0);
 }

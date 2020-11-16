@@ -183,7 +183,7 @@ const Main = (props) => {
                                                                             ...tImgContainer[state]
                                                                         }}
                                                                         className="rounded-full overflow-x-hidden border-2 border-yellow-500 bg-white xl:w-8 xl:h-8">
-                                                                        <img src="/icons/person.svg" alt="" className="w-full" />
+                                                                        <img src={props.userData.image ? props.userData.image : "/icons/person.svg"} alt="" className="w-full" />
                                                                     </div>
                                                                 )}
                                                             </Transition>
@@ -198,7 +198,7 @@ const Main = (props) => {
                                                                     >
                                                                         <p
 
-                                                                            className="ml-3 font-semibold text-white">Jane Smith
+                                                                            className="ml-3 font-semibold text-white">{props.userData.full_name}
                                                                     </p>
                                                                     </div>
                                                                 )}
@@ -454,7 +454,7 @@ const Main = (props) => {
                             <div>
                                 <div className="flex flex-col items-center mb-8 xl:mb-10">
                                     <div className="rounded-full overflow-x-hidden w-12 h-12 border-2 border-yellow-500 bg-white xl:w-8 xl:h-8">
-                                        <img src="/icons/person.svg" alt="" className="w-full" />
+                                        <img src={props.userData.image ? props.userData.image : "/icons/person.svg"} alt="" className="w-full" />
                                     </div>
                                 </div>
                                 <div className="flex flex-col items-center mb-8 xl:mb-10">

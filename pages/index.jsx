@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Main from "../containers/Layouts/Main/Main";
 import PageName from '../components/PageName/PageName';
 import CardCounter from '../components/CardCounter/CardCounter';
 import FeatureBox from '../containers/FeatureBox/FeatureBox';
 import LatestPost from '../components/LatestPost/LatestPost';
 import Chart from '../components/Chart/Chart';
+
+import * as API from '../apis/api';
+import { useCookies } from 'react-cookie';
+import { useRouter } from "next/router";
 
 const latestPostData = {
   id: '123123',
@@ -39,43 +43,54 @@ const chartData = {
 }
 
 
-const Home = () => (
-  <Main title="Dashboard">
-    <div className="mb-12">
-      <PageName pageName="Dashboard" inclUser username="James" />
-    </div>
+const Home = () => {
+  const router = useRouter()
+  const [user, setUser] = useState(null)
 
-    <div className="flex flex-col md:inline-grid md:grid-rows-1 md:grid-cols-3 mb-12 justify-between md:mb-20">
-      <div className="mb-2 md:mr-4">
-        <CardCounter total={123} itemName="Posts" containerColor="yellow" containerColorValue="400" textColor="green" textColorValue="600" />
-      </div>
-      <div className="mb-2 md:mr-4">
-        <CardCounter total={456} itemName="Projects" containerColor="green" containerColorValue="400" textColor="green" textColorValue="900" />
-      </div>
-      <div>
-        <CardCounter total={78} itemName="Achievements" containerColor="green" containerColorValue="900" textColor="yellow" textColorValue="500" />
-      </div>
-    </div>
+  const [cookie, setCookie] = useCookies();
+  const { myprofile, isLoading, isError } = API.myProfile(cookie.token)
 
-    <div className="xl:inline-grid xl:grid-rows-1 xl:grid-cols-2 justify-center">
-      <div className="mb-12 xl:mr-16">
-        <FeatureBox featureTitle="Latest Post">
-          <LatestPost img={latestPostData.img} title={latestPostData.title} desc={latestPostData.desc} />
-        </FeatureBox>
+  if (isLoading) return <p>Loading...</p>
+  if (isError && isError.code == 401){
+    router.push('/login')
+    return <></>
+  } 
+
+  return (
+    <Main title="Dashboard" userData={myprofile.data}>
+      <div className="mb-12">
+        <PageName pageName="Dashboard" inclUser username={myprofile.data.full_name} />
       </div>
 
-      {/* <div className="bg-red-400 min-h-298p w-48">
-
-      </div> */}
-
-      <div className="mb-12 xl:ml-16 self-center">
-        <FeatureBox featureTitle="Most Active Users">
-          <Chart data={chartData} />
-        </FeatureBox>
+      <div className="flex flex-col md:inline-grid md:grid-rows-1 md:grid-cols-3 mb-12 justify-between md:mb-20">
+        <div className="mb-2 md:mr-4">
+          <CardCounter total={123} itemName="Posts" containerColor="yellow" containerColorValue="400" textColor="green" textColorValue="600" />
+        </div>
+        <div className="mb-2 md:mr-4">
+          <CardCounter total={456} itemName="Projects" containerColor="green" containerColorValue="400" textColor="green" textColorValue="900" />
+        </div>
+        <div>
+          <CardCounter total={78} itemName="Achievements" containerColor="green" containerColorValue="900" textColor="yellow" textColorValue="500" />
+        </div>
       </div>
-    </div>
 
-  </Main>
-);
+      <div className="xl:inline-grid xl:grid-rows-1 xl:grid-cols-2 justify-center">
+        <div className="mb-12 xl:mr-16">
+          <FeatureBox featureTitle="Latest Post">
+            <LatestPost img={latestPostData.img} title={latestPostData.title} desc={latestPostData.desc} />
+          </FeatureBox>
+        </div>
+
+        <div className="mb-12 xl:ml-16 self-center">
+          <FeatureBox featureTitle="Most Active Users">
+            <Chart data={chartData} />
+          </FeatureBox>
+        </div>
+      </div>
+
+    </Main>
+  )
+}
+
 
 export default Home;
