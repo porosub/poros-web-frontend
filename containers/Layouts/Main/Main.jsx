@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
+
 import Navbar from "../../../components/Navbar/Navbar"
 import Footer from "../../../components/Footer/Footer"
 import { Transition, CSSTransition } from 'react-transition-group'

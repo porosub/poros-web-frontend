@@ -24,8 +24,6 @@ export const fetcher = async url => {
 
 
 
-
-
 // ################# TESTING ONLY #############
 export const testFetch = async url => {
     const res = await testInstance.get(url);

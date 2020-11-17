@@ -10,7 +10,7 @@ const LatestPost = (props) => {
             <div className="flex w-full pb-3">
                 <div className="w-1/3">
                     <div className="flex justify-center items-center rounded-lg overflow-hidden w-full">
-                        <img src={props.img} alt="w-full" />
+                        <img src={props.img || ""} alt={props.title} />
                     </div>
                 </div>
                 <div className="w-2/3 ml-4 md:ml-8 h-48 overflow-y-hidden relative">

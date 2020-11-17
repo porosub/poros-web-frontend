@@ -2,10 +2,24 @@ import React, { useState } from 'react'
 import { Transition, CSSTransition } from 'react-transition-group'
 import '../../styles/hamburgers.min.css'
 import classes from './Navbar.module.scss'
+import * as API from '../../apis/api'
+import { useCookies } from 'react-cookie'
+import {useRouter} from 'next/router'
 
 const Navbar = (props) => {
+    const router = useRouter();
     const [isHamburger, toggleHamburger] = useState(false);
     const [isDropDown, toggleDropDown] = useState(false);
+    const [cookie] = useCookies();
+
+    const handleLogout = async () => {
+        const logoutRes = await API.logout(cookie.token)
+        if(logoutRes.status == 'error'){
+            router.replace('/login', '/login')
+        }
+        // removeCookie('token')
+        router.replace('/login', '/login')
+    }
 
     const hamburgerClass = [
         "hamburger", "hamburger--collapse", "lg:hidden", "z-30", "absolute", "self-end", "focus:outline-none",
@@ -60,7 +74,7 @@ const Navbar = (props) => {
                                             <img src="/icons/profile_setting-black.svg" alt="" className="mr-3 w-6" />
                                             <p>Profile Setting</p>
                                         </div>
-                                        <div className="flex flex items-center cursor-pointer">
+                                        <div className="flex flex items-center cursor-pointer" onClick={handleLogout}>
                                             <img src="/icons/logout-black.svg" alt="" className="mr-3 w-6" />
                                             <p>Logout</p>
                                         </div>
@@ -132,8 +146,8 @@ const Navbar = (props) => {
                                     </div>
                                 </div>
                                 <div className={classes.Wrapper}>
-                                    <div className="w-full flex flex-col items-center">
-                                        <img src="/icons/logout.svg" alt="" className="md:w-3/12 w-2/6" />
+                                    <div className="w-full flex flex-col items-center" onClick={handleLogout}>
+                                        <img src="/icons/logout.svg" alt="" className="md:w-3/12 w-2/6"/>
                                         <p className="text-white font-semibold mt-2 md:text-lg md:mt-3 text-xs">Logout</p>
                                     </div>
                                 </div>

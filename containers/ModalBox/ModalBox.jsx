@@ -10,7 +10,7 @@ const ModalBox = (props) => {
                 return
             }
 
-            props.triggerSetter(false)
+            props.triggerSetter({active: false, postTitle: ""})
         }
     }
 

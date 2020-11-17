@@ -1,5 +1,7 @@
-import React, {useState} from 'react'
-import Router from 'next/router'
+import React, { useState } from 'react'
+import { useRouter } from 'next/router'
+import { useCookies } from 'react-cookie'
+import * as API from '../../apis/api'
 
 import Main from '../../containers/Layouts/Main/Main'
 import PageName from '../../components/PageName/PageName'
@@ -8,60 +10,61 @@ import Separator from '../../components/Separator/Separator'
 import PostCard from '../../components/PostCard/PostCard'
 import DeleteConfirmModal from '../../components/ModalContent/DeleteConfirmModal/DeleteConfirmModal'
 
-const dummy = [
-    {
-        id: 123,
-        userImg: "/icons/person.svg",
-        username: "King Kringe",
-        created: "2020-09-15 20:59:32",
-        title: "How to appreciate people (for dummies)",
-        tag: ["selfdevelopment", "respect", "attitude"]
-    },
-    {
-        id: 234,
-        userImg: "/img/reactjs.png",
-        username: "Fake Fam",
-        created: "2020-08-06 20:59:32",
-        title: "Why you should learn to read",
-        tag: ["selfdevelopment", "improvement", "messages"]
-    },
-    {
-        id: 345,
-        userImg: "/img/ternyataaa.png",
-        username: "Takumi",
-        created: "2019-12-25 20:59:32",
-        title: "Learn how asynchronous javascript works",
-        tag: ["development", "javascript", "webdev"]
-    }
-]
-
 const Posts = () => {
-    const [modalState, setModalState] = useState(false)
-    const [deleteTitle, setDeleteTitle] = useState('')
+    const [modalState, setModalState] = useState({active: false, postId:-1, postTitle: ""})
+    // const [deleteTitle, setDeleteTitle] = useState('')
     
-    const handleDeletePost = postTitle => {
-        setDeleteTitle(postTitle)
-        setModalState(true)
+    const router = useRouter()
+    const [cookie, setCookie] = useCookies();
+    const { myprofile: myProfile, isLoading: profileLoading, isError: profileError } = API.myProfile(cookie.token)
+    const { posts, isLoading: postsLoading, isError: postsError } = API.getPosts(cookie.token)
+
+    if (profileLoading || postsLoading) return <p>Loading...</p>
+
+    if (profileError) {
+        if (profileError.code == 401) {
+            router.replace('/login', '/login')
+            return <></>
+        }
+    }
+
+    const handleDeletePostModal = (postId, postTitle) => {
+        setModalState({active: true, postId, postTitle})
+    }
+
+    const handleDeletePost = async (postId) => {
+        const deletePostRes = await API.deletePost(postId, cookie.token);
+        if(deletePostRes.status == 'error'){
+            console.log("error mas bray")
+        }
+        API.mutatePosts(); //trigger berguna untuk revalidasi (mengirim ulang request) tanpa reload
+        setModalState({...modalState, active: false})
     }
 
     return (
-        <Main title="Dashboard">
+        <Main title="Posts" userData={myProfile.data}>
             <div className="mb-6">
                 <PageName pageName="Posts" />
             </div>
             <div className="flex w-full justify-end mb-5">
-                <Button text="Create New Post" clicked={() => Router.push('/create-post')} />
+                <Button text="Create New Post" clicked={() => router.push('/create-post')} />
             </div>
             <div className="mb-5">
                 <Separator text="overview" />
             </div>
             {/* <div className="mb-10 xl:inline-grid xl:grid-rows-1 xl:grid-cols-2"> */}
             <div className="mb-10 xl:flex xl:flex-wrap xl:justify-between xl:px-32">
-                {dummy.map(post => {
-                   return <PostCard key={post.id} postData={post} ondelete={() => handleDeletePost(post.title)} /> 
+                {/* {dummy.map(post => {
+                    return <PostCard key={post.id} postData={post} ondelete={() => handleDeletePost(post.title)} />
+                })} */}
+                {posts.data.map(post => {
+                    return <PostCard key={post.ID} postData={post} 
+                        ondeletemodal={() => handleDeletePostModal(post.ID, post.title)} 
+                     />
                 })}
             </div>
-            <DeleteConfirmModal todelete={deleteTitle} trigger={modalState} setTrigger={setModalState}/>
+            <DeleteConfirmModal todelete={modalState.postTitle} trigger={modalState.active} setTrigger={setModalState}
+                confirmDeletion={() => handleDeletePost(modalState.postId)}/>
         </Main>
     )
 }

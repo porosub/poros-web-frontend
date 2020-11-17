@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Main from "../containers/Layouts/Main/Main";
 import PageName from '../components/PageName/PageName';
 import CardCounter from '../components/CardCounter/CardCounter';
@@ -45,26 +45,29 @@ const chartData = {
 
 const Home = () => {
   const router = useRouter()
-  const [user, setUser] = useState(null)
 
   const [cookie, setCookie] = useCookies();
-  const { myprofile, isLoading, isError } = API.myProfile(cookie.token)
+  const { myprofile: myProfile, isLoading: profileLoading, isError: profileError } = API.myProfile(cookie.token)
+  const { posts, isLoading: postsLoading, isError: postsError } = API.getPosts(cookie.token)
 
-  if (isLoading) return <p>Loading...</p>
-  if (isError && isError.code == 401){
-    router.push('/login')
-    return <></>
-  } 
+  if (profileLoading || postsLoading) return <p>Loading...</p>
+
+  if (profileError) {
+    if (profileError.code == 401) {
+      router.replace('/login', '/login')
+      return <></>
+    }
+  }
 
   return (
-    <Main title="Dashboard" userData={myprofile.data}>
+    <Main title="Dashboard" userData={myProfile.data}>
       <div className="mb-12">
-        <PageName pageName="Dashboard" inclUser username={myprofile.data.full_name} />
+        <PageName pageName="Dashboard" inclUser username={myProfile.data.full_name} />
       </div>
 
       <div className="flex flex-col md:inline-grid md:grid-rows-1 md:grid-cols-3 mb-12 justify-between md:mb-20">
         <div className="mb-2 md:mr-4">
-          <CardCounter total={123} itemName="Posts" containerColor="yellow" containerColorValue="400" textColor="green" textColorValue="600" />
+          <CardCounter total={posts.data.length} itemName="Posts" containerColor="yellow" containerColorValue="400" textColor="green" textColorValue="600" />
         </div>
         <div className="mb-2 md:mr-4">
           <CardCounter total={456} itemName="Projects" containerColor="green" containerColorValue="400" textColor="green" textColorValue="900" />
@@ -77,7 +80,7 @@ const Home = () => {
       <div className="xl:inline-grid xl:grid-rows-1 xl:grid-cols-2 justify-center">
         <div className="mb-12 xl:mr-16">
           <FeatureBox featureTitle="Latest Post">
-            <LatestPost img={latestPostData.img} title={latestPostData.title} desc={latestPostData.desc} />
+            <LatestPost img={posts.data[posts.data.length-1].post_images[0]} title={posts.data[posts.data.length-1].title} desc={posts.data[posts.data.length-1].content} />
           </FeatureBox>
         </div>
 

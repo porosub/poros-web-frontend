@@ -14,16 +14,11 @@ const Login = () => {
     })
     const [loading, setLoading] = useState(false);
     const [loginFail, setLoginFail] = useState(false);
-    const [loginSuccess, setLoginSuccess] = useState(false);
     const [cookie, setCookie] = useCookies()
     const router = useRouter()
 
-    if(loginSuccess){
-        router.push('/')
-    }
-
     console.log('render login')
-    
+
     const handleChange = e => {
         setLoginData({
             ...loginData,
@@ -39,11 +34,8 @@ const Login = () => {
         console.log(loginRes)
 
         if (loginRes.status == "success") {
-            // setCookie('token', loginRes.data.access_token, { path: '/', secure: process.env.NODE_ENV === 'production' })
-            // setCookie('loggedUser', loginRes.data.user, { path: '/', secure: process.env.NODE_ENV === 'production' })
-            setLoginSuccess(true)
             setCookie('token', loginRes.data.access_token, { path: '/', secure: true })
-            setCookie('loggedUser', loginRes.data.user, { path: '/', secure: true })
+            router.push("/index", "/")
         } else {
             setLoading(false);
             setLoginFail(true)

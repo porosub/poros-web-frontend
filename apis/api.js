@@ -1,4 +1,4 @@
-import useSWR from 'swr';
+import useSWR, {mutate} from 'swr';
 import * as Conf from './axConf';
 
 
@@ -18,14 +18,21 @@ export function myProfile(token) {
     }
 }
 
-export function logout() {
-    const { data, error } = useSWR('/auth/logout', Conf.fetcher)
-    return {
-        logout: data,
-        isLoading: !error && !data,
-        isError: error
-    }
+// Not using SWR cause of loading, basically logout has no loading
+export async function logout(token) { 
+    Conf.instance.defaults.headers.Authorization = `Bearer ${token}`
+    const res = await Conf.instance.get('/auth/logout', {validateStatus: false});
+    return res.data
 }
+
+// export function logout() {
+//     const { data, error } = useSWR('/auth/logout', Conf.fetcher)
+//     return {
+//         logout: data,
+//         isLoading: !error && !data,
+//         isError: error
+//     }
+// }
 
 // POST METHOD:
 
@@ -121,6 +128,10 @@ export function getPosts() {
     }
 }
 
+export function mutatePosts() {
+    mutate('/posts')
+}
+
 export function getPost(id) {
     const { data, error } = useSWR(`/posts/${id}`, Conf.fetcher)
     return {
@@ -128,6 +139,12 @@ export function getPost(id) {
         isLoading: !error && !data,
         isError: error
     }
+}
+
+export async function deletePost(postId, token) {
+    Conf.instance.defaults.headers.Authorization = `Bearer ${token}`
+    const res = await Conf.instance.delete(`/posts/${postId}`, {validateStatus: false});
+    return res.data
 }
 
 // ############# TESTING ONLY ############
