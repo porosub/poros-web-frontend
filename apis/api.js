@@ -128,10 +128,6 @@ export function getPosts() {
     }
 }
 
-export function mutatePosts() {
-    mutate('/posts')
-}
-
 export function getPost(id) {
     const { data, error } = useSWR(`/posts/${id}`, Conf.fetcher)
     return {
@@ -146,6 +142,18 @@ export async function deletePost(postId, token) {
     const res = await Conf.instance.delete(`/posts/${postId}`, {validateStatus: false});
     return res.data
 }
+
+export async function postPost(formData, token) {
+    Conf.instance.defaults.headers.Authorization = `Bearer ${token}`
+    Conf.instance.defaults.headers.ContentType = "multipart/form-data"
+    const res = await Conf.instance.post('/posts', formData, {validateStatus:false});
+    return res.data
+    
+}
+export function mutatePosts() {
+    mutate('/posts')
+}
+
 
 // ############# TESTING ONLY ############
 export function testGetPosts(token) {

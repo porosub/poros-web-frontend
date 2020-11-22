@@ -35,7 +35,7 @@ const Posts = () => {
     const handleDeletePost = async (postId) => {
         const deletePostRes = await API.deletePost(postId, cookie.token);
         if(deletePostRes.status == 'error'){
-            console.log("error mas bray")
+            router.replace("/login", "/login")
         }
         API.mutatePosts(); //trigger berguna untuk revalidasi (mengirim ulang request) tanpa reload
         setModalState({...modalState, active: false})

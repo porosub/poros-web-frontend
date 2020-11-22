@@ -4,15 +4,49 @@ import Main from '../containers/Layouts/Main/Main'
 import PageName from '../components/PageName/PageName'
 // import Button from '../components/Button/Button'
 import PostForm from '../components/PostForm/PostForm'
+import {useRouter} from 'next/router'
+import { useCookies } from 'react-cookie';
+import * as API from '../apis/api';
+
 
 const CreatePost = () => {
+    const router = useRouter()
 
-    const handleSubmit = (inputVal) => {
+    const [cookie, setCookie] = useCookies();
+    const { myprofile: myProfile, isLoading: profileLoading, isError: profileError } = API.myProfile(cookie.token)
+    const { posttypes: postTypes, isLoading: postTypesLoading, isError: postTypesError } = API.getPostTypes(cookie.token)
+
+    if (profileLoading || postTypesLoading) return <p>Loading...</p>
+
+    if (profileError) {
+        if (profileError.code == 401) {
+            router.replace('/login', '/login')
+            return <></>
+        }
+    }
+
+    const handleSubmit = async inputVal => {
         console.log(inputVal)
+        console.log(myProfile.data.id)
+        
+        var postBody = new FormData();
+        postBody.append("title", inputVal.title);
+        postBody.append("content", inputVal.content);
+        postBody.append("user_id", myProfile.data.id)
+        postBody.append("post_type_id", inputVal.postType)
+        // postBody.append("images", "")
+
+        const postRes = await API.postPost(postBody, cookie.token)
+        if(postRes.status == 'error'){
+            router.replace("/login", "/login")
+            return <></>
+        }
+        
+        router.push("/posts")
     }
 
     return (
-        <Main title="Dashboard">
+        <Main title="Dashboard" userData={myProfile.data}>
             <div className="mb-6 xl:mb-16">
                 <PageName pageName="Create Post" />
             </div>
@@ -38,7 +72,7 @@ const CreatePost = () => {
                             <Button text="Submit" clicked={handleSubmit} />
                         </div>
                     </form> */}
-                    <PostForm submitted={handleSubmit}/>
+                    <PostForm submitted={handleSubmit} postTypes={postTypes.data}/>
                 </div>
             </div>
         </Main>
